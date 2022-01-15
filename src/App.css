@@ -1,7 +1,32 @@
 .App {
   text-align: center;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 6rem 1fr;
 }
 
 header {
     background-color: #6C9A8B;
+    display: grid;
+    place-items: center;
+}
+
+main {
+  grid-template-rows: 1fr 1fr;
+  display: grid;
+  grid-gap: 1rem;
+  place-items: center;
+}
+
+button {
+  width: 9rem;
+  height: 3rem;
+  align-self: baseline;
+}
+
+section {
+  background-color: #1a79cb;
+  padding: 5rem;
+  border: 5px solid black;
+  border-radius: 20px;
 }
