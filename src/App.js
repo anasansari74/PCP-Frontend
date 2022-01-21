@@ -1,8 +1,10 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
-	useEffect(() => {}, []);
+
+	const [quote, setQuote] = useState("Press the button below to generate a new quote")
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -11,14 +13,16 @@ function App() {
 			<main>
 				<section className="thought-box">
 					<p className="quote">
-						"You are amazing. What goes by you isn't for you. YOLO"
+						{quote}
 					</p>
 				</section>
 				<button
-					onClick={() => {
-						fetch("https://zenquotes.io/api/quotes")
-							.then((res) => {res => res.json()})
-                            .then(console.log())
+					onClick={(e) => {
+						fetch("http://localhost:4000/quotes")
+							.then(res=>res.json())
+                            .then(data=>{
+								setQuote(data[Math.floor(Math.random() * data.length)])
+							})
 					}}
 				>
 					Generate Thought
