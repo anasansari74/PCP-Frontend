@@ -1,10 +1,16 @@
 import "./App.css";
 import { useState } from "react";
+import React from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { changeQuote } from "./reducer";
 
 const thoughtsURL = "http://localhost:3030/thoughts";
 const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
+  const text = useSelector(state => state.text.value)
+  const dispatch = useDispatch()
+
   const colors = [
     "#E9C46A",
     "#F4A261",
@@ -27,6 +33,7 @@ function App() {
 
   const [thoughtToPost, setThoughtToPost] = useState("");
 
+
   return (
     <div className="App">
       <header className="App-header">
@@ -34,7 +41,7 @@ function App() {
       </header>
       <main className="page-body">
         <section>
-          <p className="thought-box">{quote}</p>
+          <p className="thought-box">{text}</p>
           <select value={category} onChange={e => setCategory(e.target.value)}>
             <option value="" disabled>
               Select the category you feel fits your thought best
@@ -54,13 +61,13 @@ function App() {
           <button
             onClick={e => {
               fetch(
-                category === ""
+                category === "" || "Random"
                   ? `${thoughtsURL}/random`
                   : `${categoriesURL}/random/${category}`
               )
                 .then(res => res.json())
                 .then(data => {
-                  setQuote(data.randomThought.thought);
+                  dispatch(changeQuote(data.randomThought.thought));
 
                   document.querySelector(".page-body").style.backgroundColor =
                     randomColorString;
