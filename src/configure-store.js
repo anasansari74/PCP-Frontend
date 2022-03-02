@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import textReducer from "./reducer"
+import textReducer from "./reducers/getThought"
 
 export default configureStore(
     {

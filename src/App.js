@@ -2,16 +2,17 @@ import "./App.css";
 import { useState } from "react";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { changeQuote } from "./actions"
 
-import { changeQuote } from "./reducer";
+// import { changeQuote } from "./reducers/getThought";
 import { selectedCategory } from "./reducers/selectedCategory";
 
 const thoughtsURL = "http://localhost:3030/thoughts";
 const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
-  const text = useSelector(state => state.text);
-  console.log(text);
+  const getThought = useSelector(state => state.getThought);
+  console.log(getThought);
   const category = useSelector(state => state.category);
   const dispatch = useDispatch();
 
@@ -44,7 +45,7 @@ function App() {
       </header>
       <main className="page-body">
         <section>
-          <p className="thought-box">{text}</p>
+          <p className="thought-box">{getThought}</p>
           {/* <select value={category} onChange={e => setCategory(e.target.value)}> */}
           <select
             value={category}

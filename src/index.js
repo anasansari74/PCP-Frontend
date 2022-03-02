@@ -4,11 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createStore } from "redux";
-import allReducers from "./reducers";
+import allReducer from "./reducers";
 import { Provider } from "react-redux";
+// import * as serviceWorker from './serviceWorker';
+
 // import store from "./configure-store"
 
-const store = createStore(allReducers);
+const store = createStore(allReducer);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,3 +25,6 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+// serviceWorker.unregister();
+
