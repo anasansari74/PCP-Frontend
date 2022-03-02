@@ -1,15 +1,19 @@
 import "./App.css";
 import { useState } from "react";
-import React from "react"
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { changeQuote } from "./reducer";
+import { selectedCategory } from "./reducers/selectedCategory";
 
 const thoughtsURL = "http://localhost:3030/thoughts";
 const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
-  const text = useSelector(state => state.text.value)
-  const dispatch = useDispatch()
+  const text = useSelector(state => state.text);
+  console.log(text);
+  const category = useSelector(state => state.category);
+  const dispatch = useDispatch();
 
   const colors = [
     "#E9C46A",
@@ -23,16 +27,15 @@ function App() {
 
   const randomColorString = colors[Math.floor(Math.random() * colors.length)];
 
-  const [quote, setQuote] = useState(
-    "Press the button below to generate a new quote"
-  );
+  // const [quote, setQuote] = useState(
+  //   "Press the button below to generate a new quote"
+  // );
 
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
 
   const [postCategory, setPostCategory] = useState("");
 
   const [thoughtToPost, setThoughtToPost] = useState("");
-
 
   return (
     <div className="App">
@@ -42,7 +45,11 @@ function App() {
       <main className="page-body">
         <section>
           <p className="thought-box">{text}</p>
-          <select value={category} onChange={e => setCategory(e.target.value)}>
+          {/* <select value={category} onChange={e => setCategory(e.target.value)}> */}
+          <select
+            value={category}
+            onChange={e => dispatch(selectedCategory(e.target.value))}
+          >
             <option value="" disabled>
               Select the category you feel fits your thought best
             </option>
