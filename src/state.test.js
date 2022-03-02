@@ -1,4 +1,4 @@
-import reducer, { changeQuote } from "./reducer";
+import reducer, { changeQuote } from "./reducers/getThought";
 
 test("check that state changes", () => {
   expect(
