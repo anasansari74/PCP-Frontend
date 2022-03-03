@@ -1,12 +1,14 @@
 import getThoughtReducer from "./getThought";
 import selectedCategoryReducer from "./selectedCategory";
-import postCategoryReducer from "./postCategory";
+import postedCategoryReducer from "./postCategory";
+import postThoughtReducer from "./thoughtToPost";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
   getThought: getThoughtReducer,
   selectedCategory: selectedCategoryReducer,
-  postCategory: postCategoryReducer,
+  postedCategory: postedCategoryReducer,
+  postThought: postThoughtReducer,
 });
 
 export default allReducers;

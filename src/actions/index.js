@@ -1,13 +1,27 @@
-export const changeQuote = (string) => {
+export const changeQuote = data => {
   return {
     type: "changeQuote",
-    payload: string,
+    payload: data,
   };
 };
 
-export const selectCategory = (string) => {
+export const selectCategory = data => {
   return {
     type: "selectCategory",
-    payload: string,
+    payload: data,
+  };
+};
+
+export const postCategory = data => {
+  return {
+    type: "postCategory",
+    payload: data,
+  };
+};
+
+export const thoughtToPost = data => {
+  return {
+    type: "thoughtToPost",
+    payload: data,
   };
 };
