@@ -4,3 +4,10 @@ export const changeQuote = (string) => {
     payload: string,
   };
 };
+
+export const selectCategory = (string) => {
+  return {
+    type: "selectCategory",
+    payload: string,
+  };
+};

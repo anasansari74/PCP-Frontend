@@ -12,8 +12,8 @@ const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
   const getThought = useSelector(state => state.getThought);
-  console.log(getThought);
   const category = useSelector(state => state.category);
+  // const post = useSelector(state => state.category);
   const dispatch = useDispatch();
 
   const colors = [
