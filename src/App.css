@@ -3,13 +3,32 @@
 	display: grid;
 	min-height: 100vh;
 	grid-template-rows: 6rem 1fr;
+	/* margin: 0 2rem; */
 }
 
 header {
-	background-color: #2A9D8F;
 	display: grid;
-	place-items: center;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: center;
 }
+
+h1 {
+	color: black;
+	font-size: 1.75rem;
+	font-family: 'Averia Serif Libre', cursive;
+	text-align: center;
+}
+
+div.login {
+	border: black solid 1px;
+	border-radius: 10px;
+	padding: 0.5rem 1rem;
+	margin-right: 2rem;
+	width: 10rem;
+	justify-self: right;
+}
+
+
 
 main {
 	display: grid;
@@ -55,10 +74,7 @@ section.post-thought textarea {
 	border-radius: 20px;
 }
 
-h1 {
-	color: white;
-	font-size: 1.75rem;
-}
+
 
 section.post-thought {
 	margin: 2rem;

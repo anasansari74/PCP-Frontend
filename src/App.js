@@ -31,16 +31,18 @@ function App() {
     "#E76F51",
     "#F5AA6F",
     "#8CC084",
-    "#2F4550",
     "#828E82",
   ];
+
 
   const randomColorString = colors[Math.floor(Math.random() * colors.length)];
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
+        <div className="space"></div>
         <h1>Positive Thought Generator</h1>
+        <div className="login">Log in</div>
       </header>
       <main className="page-body">
         <section>
@@ -76,7 +78,7 @@ function App() {
                 .then(data => {
                   dispatch(changeQuote(data.randomThought.thought));
 
-                  document.querySelector(".page-body").style.backgroundColor =
+                  document.querySelector(".App").style.backgroundColor =
                     randomColorString;
                 });
             }}
