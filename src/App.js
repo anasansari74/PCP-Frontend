@@ -16,6 +16,8 @@ const thoughtsURL = "http://localhost:3030/thoughts";
 const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
+  //All states
+
   const getThought = useSelector(state => state.getThought);
   const selectedCategory = useSelector(state => state.selectedCategory);
   const postedCategory = useSelector(state => state.postedCategory);
