@@ -1,10 +1,10 @@
-const postCategoryReducer = (state = "", action) => {
+const postedCategoryReducer = (state = "Random", action) => {
   switch (action.type) {
-    case "selectCategory":
+    case "postCategory":
       return (state = action.payload);
     default:
       return state;
   }
 };
 
-export default postCategoryReducer;
+export default postedCategoryReducer;

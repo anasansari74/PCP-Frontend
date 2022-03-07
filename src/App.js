@@ -2,18 +2,27 @@ import "./App.css";
 import { useState } from "react";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeQuote } from "./actions"
+import {
+  changeQuote,
+  selectCategory,
+  postCategory,
+  thoughtToPost,
+} from "./actions";
 
 // import { changeQuote } from "./reducers/getThought";
-import { selectedCategory } from "./reducers/selectedCategory";
+// import { selectedCategory } from "./reducers/selectedCategory";
 
 const thoughtsURL = "http://localhost:3030/thoughts";
 const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
+  //All states
+
   const getThought = useSelector(state => state.getThought);
-  const category = useSelector(state => state.category);
-  // const post = useSelector(state => state.category);
+  const selectedCategory = useSelector(state => state.selectedCategory);
+  const postedCategory = useSelector(state => state.postedCategory);
+  const postThought = useSelector(state => state.postThought);
+
   const dispatch = useDispatch();
 
   const colors = [
@@ -28,16 +37,6 @@ function App() {
 
   const randomColorString = colors[Math.floor(Math.random() * colors.length)];
 
-  // const [quote, setQuote] = useState(
-  //   "Press the button below to generate a new quote"
-  // );
-
-  // const [category, setCategory] = useState("");
-
-  const [postCategory, setPostCategory] = useState("");
-
-  const [thoughtToPost, setThoughtToPost] = useState("");
-
   return (
     <div className="App">
       <header className="App-header">
@@ -46,14 +45,15 @@ function App() {
       <main className="page-body">
         <section>
           <p className="thought-box">{getThought}</p>
-          {/* <select value={category} onChange={e => setCategory(e.target.value)}> */}
+
           <select
-            value={category}
-            onChange={e => dispatch(selectedCategory(e.target.value))}
+            name={"category"}
+            value={selectedCategory}
+            onChange={e => {
+              dispatch(selectCategory(e.target.value));
+            }}
           >
-            <option value="" disabled>
-              Select the category you feel fits your thought best
-            </option>
+            <option value="Random">Random</option>
             <option value="Health">Health</option>
             <option value="Uplifting">Uplifting</option>
             <option value="Career">Career</option>
@@ -64,14 +64,13 @@ function App() {
             <option value="Comedic">Comedic</option>
             <option value="Happiness">Happiness</option>
             <option value="Insightful">Insightful</option>
-            <option value="Random">Random</option>
           </select>
           <button
             onClick={e => {
               fetch(
-                category === "" || "Random"
+                selectedCategory === "Random"
                   ? `${thoughtsURL}/random`
-                  : `${categoriesURL}/random/${category}`
+                  : `${categoriesURL}/random/${selectedCategory}`
               )
                 .then(res => res.json())
                 .then(data => {
@@ -91,7 +90,7 @@ function App() {
             onSubmit={e => {
               e.preventDefault();
 
-              postCategory === "" || thoughtToPost === ""
+              postedCategory === "" || postThought === ""
                 ? alert("You are missing a category/thought")
                 : fetch(`${thoughtsURL}/`, {
                     method: "POST",
@@ -99,23 +98,26 @@ function App() {
                       "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                      categoryTitle: postCategory.toLowerCase(),
-                      thought: thoughtToPost,
+                      categoryTitle: postedCategory.toLowerCase(),
+                      thought: postThought,
                     }),
                   })
                     .then(res => res.json())
-                    .then(data => console.log(data.msg));
+                    .then(data => {
+                      alert("Thought posted successfully!");
+                    });
+              dispatch(postCategory("Random"));
+              dispatch(thoughtToPost(""));
             }}
           >
             <select
-              name="thoughts"
+              name="category to post"
               id="thoughts"
-              defaultValue={""}
-              onChange={e => setPostCategory(e.target.value)}
+              value={postedCategory}
+              // onChange={e => setPostCategory(e.target.value)}
+              onChange={e => dispatch(postCategory(e.target.value))}
             >
-              <option value="" disabled>
-                Select the category you feel fits your thought best
-              </option>
+              <option value="Random">Random</option>
               <option value="Health">Health</option>
               <option value="Uplifting">Uplifting</option>
               <option value="Career">Career</option>
@@ -129,8 +131,9 @@ function App() {
             </select>
             <textarea
               placeholder="Write your personal positive thought here..."
+              type={"reset"}
               onChange={e => {
-                setThoughtToPost(e.target.value);
+                dispatch(thoughtToPost(e.target.value));
               }}
             ></textarea>
             <button className="alternate" type="submit">
