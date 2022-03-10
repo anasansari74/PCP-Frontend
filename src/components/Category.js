@@ -48,6 +48,7 @@ export const Category = ({
         {categories.map((category, index) => (
           <div
             key={index}
+            //This bug was fixed
             className={`${
               category === selectedCategory
                 ? "each-category selected"
