@@ -1,6 +1,9 @@
-import "./App.css";
-import { useState } from "react";
 import React from "react";
+
+import "./App.css";
+
+import { colors, categories } from "./lists";
+
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeQuote,
@@ -9,31 +12,18 @@ import {
   thoughtToPost,
 } from "./actions";
 
-// import { changeQuote } from "./reducers/getThought";
-// import { selectedCategory } from "./reducers/selectedCategory";
+import { Category } from "./components/Category";
 
 const thoughtsURL = "http://localhost:3030/thoughts";
 const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
-  //All states
-
   const getThought = useSelector(state => state.getThought);
   const selectedCategory = useSelector(state => state.selectedCategory);
   const postedCategory = useSelector(state => state.postedCategory);
   const postThought = useSelector(state => state.postThought);
 
   const dispatch = useDispatch();
-
-  const colors = [
-    "#E9C46A",
-    "#F4A261",
-    "#E76F51",
-    "#F5AA6F",
-    "#8CC084",
-    "#828E82",
-  ];
-
 
   const randomColorString = colors[Math.floor(Math.random() * colors.length)];
 
@@ -45,6 +35,12 @@ function App() {
         <div className="login">Log in</div>
       </header>
       <main className="page-body">
+        <Category
+          selectedCategory={selectedCategory}
+          selectCategory={selectCategory}
+          dispatch={dispatch}
+          categories={categories}
+        />
         <section>
           <p className="thought-box">{getThought}</p>
 
@@ -55,17 +51,11 @@ function App() {
               dispatch(selectCategory(e.target.value));
             }}
           >
-            <option value="Random">Random</option>
-            <option value="Health">Health</option>
-            <option value="Uplifting">Uplifting</option>
-            <option value="Career">Career</option>
-            <option value="Motivation">Motivation</option>
-            <option value="Relationships">Relationships</option>
-            <option value="Wholesome">Wholesome</option>
-            <option value="Relaxing">Relaxing</option>
-            <option value="Comedic">Comedic</option>
-            <option value="Happiness">Happiness</option>
-            <option value="Insightful">Insightful</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
           </select>
           <button
             onClick={e => {
@@ -119,17 +109,11 @@ function App() {
               // onChange={e => setPostCategory(e.target.value)}
               onChange={e => dispatch(postCategory(e.target.value))}
             >
-              <option value="Random">Random</option>
-              <option value="Health">Health</option>
-              <option value="Uplifting">Uplifting</option>
-              <option value="Career">Career</option>
-              <option value="Motivation">Motivation</option>
-              <option value="Relationships">Relationships</option>
-              <option value="Wholesome">Wholesome</option>
-              <option value="Relaxing">Relaxing</option>
-              <option value="Comedic">Comedic</option>
-              <option value="Happiness">Happiness</option>
-              <option value="Insightful">Insightful</option>
+              {categories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
             <textarea
               placeholder="Write your personal positive thought here..."

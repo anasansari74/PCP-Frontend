@@ -1,89 +1,93 @@
 .App {
-	text-align: center;
-	display: grid;
-	min-height: 100vh;
-	grid-template-rows: 6rem 1fr;
-	/* margin: 0 2rem; */
+  text-align: center;
+  display: grid;
+  width: 100vw;
+  background-color: #bfbbae;
 }
 
 header {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+
+  padding: 1.75rem;
 }
 
 h1 {
-	color: black;
-	font-size: 1.75rem;
-	font-family: 'Averia Serif Libre', cursive;
-	text-align: center;
+  color: black;
+  font-size: 3em;
+  font-family: "Averia Serif Libre", cursive;
+  text-align: center;
 }
 
 div.login {
-	border: black solid 1px;
-	border-radius: 10px;
-	padding: 0.5rem 1rem;
-	margin-right: 2rem;
-	width: 10rem;
-	justify-self: right;
+  border: black solid 1px;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  margin-right: 2rem;
+  width: 10rem;
+  justify-self: right;
+  cursor: pointer;
 }
 
-
+div.login:hover {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  box-shadow: 10px 5px 5px lightgrey;
+}
 
 main {
-	display: grid;
-	grid-gap: 1rem;
-	place-items: center;
+  display: grid;
+  grid-gap: 1rem;
+  place-items: center;
 }
 
 button {
-	width: 9rem;
-	background-color: #264653;
-	border: none;
-	border-radius: 5px;
-	color: #f8f1ff;
-	height: 3rem;
-	align-self: baseline;
+  width: 9rem;
+  background-color: #264653;
+  border: none;
+  border-radius: 5px;
+  color: #f8f1ff;
+  height: 3rem;
+  align-self: baseline;
 }
 
 button.alternate {
-    background-color: #2A9D8F ;
+  background-color: #2a9d8f;
 }
 
 .thought-box {
-	background-color: #f7f5f9;
-	padding: 5rem;
-	border: 3px solid #c9c6cc;
-	border-radius: 20px;
-	margin: 2rem;
-	font-style: italic;
+  background-color: #f7f5f9;
+  padding: 5rem;
+  border: 3px solid #c9c6cc;
+  border-radius: 20px;
+  margin: 2rem;
+  font-style: italic;
 }
 
 section.post-thought form {
-	display: grid;
-	place-items: center;
-	grid-gap: 2rem;
+  display: grid;
+  place-items: center;
+  grid-gap: 2rem;
 }
 
 section.post-thought textarea {
-	height: 8rem;
-	width: 20rem;
-	background-color: #f7f5f9;
-	padding: 1rem;
-	border: 3px solid #c9c6cc;
-	border-radius: 20px;
+  height: 8rem;
+  width: 20rem;
+  background-color: #f7f5f9;
+  padding: 1rem;
+  border: 3px solid #c9c6cc;
+  border-radius: 20px;
 }
 
-
-
 section.post-thought {
-	margin: 2rem;
+  margin: 2rem;
 }
 
 #thoughts {
-	border-radius: 0;
-	height: 40px;
-	background-color: #2A9D8F;
-	color: #fff;
+  border-radius: 0;
+  height: 40px;
+  background-color: #2a9d8f;
+  color: #fff;
 }
-
