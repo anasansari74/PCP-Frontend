@@ -43,7 +43,13 @@ main {
   place-items: center;
 }
 
-button {
+section.thought-area {
+	display: grid;
+	padding: 1rem;
+
+}
+
+button.quote-button {
   width: 9rem;
   background-color: #264653;
   border: none;
@@ -51,19 +57,50 @@ button {
   color: #f8f1ff;
   height: 3rem;
   align-self: baseline;
+  display: block;
+  justify-self: right;
+  align-self: end;
+  font-family: 'Open Sans Condensed', sans-serif;
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
-button.alternate {
+button.post-thought-button {
   background-color: #2a9d8f;
+  
 }
 
-.thought-box {
+button.quote-button:hover {
+	background-color: whitesmoke;
+	color: #264653;
+	border: solid 1px #264653;
+}
+
+div.quote-wrapper {
+	display: grid;
+}
+
+div.thought-box {
+  display: grid;
   background-color: #f7f5f9;
-  padding: 5rem;
+  padding: 2rem 5rem 2rem 5rem;
   border: 3px solid #c9c6cc;
   border-radius: 20px;
-  margin: 2rem;
+  /* margin: 2rem; */
   font-style: italic;
+  gap: 3rem;
+  width: 60vw;
+  box-shadow: grey 10px 10px 15px;
+}
+
+img.quote-marks {
+	width: 100px;
+	justify-self: start;
+	transform: translate(-50%, -25%);
+}
+
+p.quote {
+	font-size: 1.5em;
 }
 
 section.post-thought form {
@@ -91,3 +128,9 @@ section.post-thought {
   background-color: #2a9d8f;
   color: #fff;
 }
+
+@media only screen and (max-width: 900px) {
+	div.thought-box {
+	  width: 100%;
+	}
+  }

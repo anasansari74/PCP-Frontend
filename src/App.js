@@ -18,10 +18,10 @@ const thoughtsURL = "http://localhost:3030/thoughts";
 const categoriesURL = "http://localhost:3030/categories";
 
 function App() {
-  const getThought = useSelector(state => state.getThought);
-  const selectedCategory = useSelector(state => state.selectedCategory);
-  const postedCategory = useSelector(state => state.postedCategory);
-  const postThought = useSelector(state => state.postThought);
+  const getThought = useSelector((state) => state.getThought);
+  const selectedCategory = useSelector((state) => state.selectedCategory);
+  const postedCategory = useSelector((state) => state.postedCategory);
+  const postThought = useSelector((state) => state.postThought);
 
   const dispatch = useDispatch();
 
@@ -41,45 +41,41 @@ function App() {
           dispatch={dispatch}
           categories={categories}
         />
-        <section>
-          <p className="thought-box">{getThought}</p>
+        <section className="thought-area">
+          <div className="thought-box">
+            <div className="quote-wrapper">
+              <img
+                className="quote-marks"
+                src="https://res.cloudinary.com/kymburley/image/upload/v1477068792/quotemarks_mh848a.png"
+                alt="quote marks"
+              ></img>
 
-          <select
-            name={"category"}
-            value={selectedCategory}
-            onChange={e => {
-              dispatch(selectCategory(e.target.value));
-            }}
-          >
-            {categories.map((category, index) => (
-              <option key={index} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <button
-            onClick={e => {
-              fetch(
-                selectedCategory === "Random"
-                  ? `${thoughtsURL}/random`
-                  : `${categoriesURL}/random/${selectedCategory}`
-              )
-                .then(res => res.json())
-                .then(data => {
-                  dispatch(changeQuote(data.randomThought.thought));
+              <p className="quote">{getThought}</p>
+            </div>
+            <button className="quote-button"
+              onClick={(e) => {
+                fetch(
+                  selectedCategory === "Random"
+                    ? `${thoughtsURL}/random`
+                    : `${categoriesURL}/random/${selectedCategory}`
+                )
+                  .then((res) => res.json())
+                  .then((data) => {
+                    dispatch(changeQuote(data.randomThought.thought));
 
-                  document.querySelector(".App").style.backgroundColor =
-                    randomColorString;
-                });
-            }}
-          >
-            Generate Thought
-          </button>
+                    document.querySelector(".App").style.backgroundColor =
+                      randomColorString;
+                  });
+              }}
+            >
+              Generate Thought
+            </button>
+          </div>
         </section>
 
-        <section className="post-thought">
+        {/* <section className="post-thought">
           <form
-            onSubmit={e => {
+            onSubmit={(e) => {
               e.preventDefault();
 
               postedCategory === "" || postThought === ""
@@ -94,8 +90,8 @@ function App() {
                       thought: postThought,
                     }),
                   })
-                    .then(res => res.json())
-                    .then(data => {
+                    .then((res) => res.json())
+                    .then((data) => {
                       alert("Thought posted successfully!");
                     });
               dispatch(postCategory("Random"));
@@ -107,7 +103,7 @@ function App() {
               id="thoughts"
               value={postedCategory}
               // onChange={e => setPostCategory(e.target.value)}
-              onChange={e => dispatch(postCategory(e.target.value))}
+              onChange={(e) => dispatch(postCategory(e.target.value))}
             >
               {categories.map((category, index) => (
                 <option key={index} value={category}>
@@ -118,15 +114,15 @@ function App() {
             <textarea
               placeholder="Write your personal positive thought here..."
               type={"reset"}
-              onChange={e => {
+              onChange={(e) => {
                 dispatch(thoughtToPost(e.target.value));
               }}
             ></textarea>
-            <button className="alternate" type="submit">
+            <button className="post-thought-button" type="submit">
               Post Thought
             </button>
           </form>
-        </section>
+        </section> */}
       </main>
     </div>
   );

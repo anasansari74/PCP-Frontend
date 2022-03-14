@@ -3,16 +3,11 @@ import styled from "styled-components";
 const CategoryDiv = styled.div`
   h3 {
     padding: 1rem;
+    font-size: 2em;
+    color: whitesmoke;
   }
 
   .all-categories {
-    // display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(auto, 100px));
-    // place-items: center;
-    // padding: 1rem;
-    // width: 80vw;
-    // justify-content: space-between;
-
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
@@ -26,12 +21,25 @@ const CategoryDiv = styled.div`
     padding: 0.5rem;
     margin: 0.5rem;
     border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 5px 10px grey;
+    font-weight: bold;
   }
 
   .selected {
     background-color: black;
     color: white;
-    font-weight: bold;
+  }
+
+  .not-selected:hover {
+    transform: scale(1.1); 
+    background-color: whitesmoke;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .all-categories {
+      display: inline;
+    }
   }
 `;
 
@@ -48,12 +56,12 @@ export const Category = ({
         {categories.map((category, index) => (
           <div
             key={index}
-            //This bug was fixed
             className={`${
               category === selectedCategory
                 ? "each-category selected"
-                : "each-category"
+                : "each-category not-selected"
             }`}
+            onClick={() => dispatch(selectCategory(category))}
           >
             {category}
           </div>
