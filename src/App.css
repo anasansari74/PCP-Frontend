@@ -10,7 +10,7 @@ header {
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
 
-  padding: 1.75rem;
+  padding: 2rem;
 }
 
 h1 {
@@ -24,7 +24,7 @@ div.login {
   border: black solid 1px;
   border-radius: 10px;
   padding: 0.5rem 1rem;
-  margin-right: 2rem;
+
   width: 10rem;
   justify-self: right;
   cursor: pointer;
@@ -35,6 +35,7 @@ div.login:hover {
   color: white;
   font-weight: bold;
   box-shadow: 10px 5px 5px lightgrey;
+  transform: scale(1.1);
 }
 
 main {
@@ -44,9 +45,9 @@ main {
 }
 
 section.thought-area {
-	display: grid;
-	padding: 1rem;
-
+  display: grid;
+  width: 100vw;
+  place-items: center;
 }
 
 button.quote-button {
@@ -60,24 +61,23 @@ button.quote-button {
   display: block;
   justify-self: right;
   align-self: end;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 
 button.post-thought-button {
   background-color: #2a9d8f;
-  
 }
 
 button.quote-button:hover {
-	background-color: whitesmoke;
-	color: #264653;
-	border: solid 1px #264653;
+  background-color: whitesmoke;
+  color: #264653;
+  border: solid 1px #264653;
 }
 
 div.quote-wrapper {
-	display: grid;
+  display: grid;
 }
 
 div.thought-box {
@@ -86,7 +86,7 @@ div.thought-box {
   padding: 2rem 5rem 2rem 5rem;
   border: 3px solid #c9c6cc;
   border-radius: 20px;
-  /* margin: 2rem; */
+  margin: 1rem;
   font-style: italic;
   gap: 3rem;
   width: 60vw;
@@ -94,13 +94,13 @@ div.thought-box {
 }
 
 img.quote-marks {
-	width: 100px;
-	justify-self: start;
-	transform: translate(-50%, -25%);
+  width: 100px;
+  justify-self: start;
+  transform: translate(-50%, -25%);
 }
 
 p.quote {
-	font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 section.post-thought form {
@@ -130,7 +130,20 @@ section.post-thought {
 }
 
 @media only screen and (max-width: 900px) {
-	div.thought-box {
-	  width: 100%;
-	}
+  div.thought-box {
+    width: 90vw;
   }
+}
+
+@media only screen and (max-width: 500px) {
+  header {
+    display: grid;
+    grid-template-columns: unset;
+    grid-template-rows: auto;
+    padding: 1rem;
+    gap: 2rem;
+  }
+  .login {
+    margin: 0 auto;
+  }
+}
