@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const CategoryDiv = styled.div`
+  width: 100vw;
+
   h3 {
     padding: 1rem;
     font-size: 2em;
@@ -32,13 +34,16 @@ const CategoryDiv = styled.div`
   }
 
   .not-selected:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
     background-color: whitesmoke;
   }
 
   @media only screen and (max-width: 400px) {
     .all-categories {
-      display: inline;
+      display: grid;
+    }
+    .each-category {
+      width: 100%;
     }
   }
 `;
