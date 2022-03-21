@@ -14,14 +14,14 @@ import {
 
 import { Category } from "./components/Category";
 
-const thoughtsURL = "http://localhost:3030/thoughts";
-const categoriesURL = "http://localhost:3030/categories";
+const thoughtsURL = `${process.env.API_URL}/thoughts`;
+const categoriesURL = `${process.env.API_URL}/categories`;
 
 function App() {
-  const getThought = useSelector((state) => state.getThought);
-  const selectedCategory = useSelector((state) => state.selectedCategory);
-  const postedCategory = useSelector((state) => state.postedCategory);
-  const postThought = useSelector((state) => state.postThought);
+  const getThought = useSelector(state => state.getThought);
+  const selectedCategory = useSelector(state => state.selectedCategory);
+  const postedCategory = useSelector(state => state.postedCategory);
+  const postThought = useSelector(state => state.postThought);
 
   const dispatch = useDispatch();
 
@@ -52,15 +52,16 @@ function App() {
 
               <p className="quote">{getThought}</p>
             </div>
-            <button className="quote-button"
-              onClick={(e) => {
+            <button
+              className="quote-button"
+              onClick={e => {
                 fetch(
                   selectedCategory === "Random"
                     ? `${thoughtsURL}/random`
                     : `${categoriesURL}/random/${selectedCategory}`
                 )
-                  .then((res) => res.json())
-                  .then((data) => {
+                  .then(res => res.json())
+                  .then(data => {
                     dispatch(changeQuote(data.randomThought.thought));
 
                     document.querySelector(".App").style.backgroundColor =
