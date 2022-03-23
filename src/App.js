@@ -1,5 +1,7 @@
 import React from "react";
 
+import env from "react-dotenv";
+
 import "./App.css";
 
 import { colors, categories } from "./lists";
@@ -14,14 +16,15 @@ import {
 
 import { Category } from "./components/Category";
 
-const thoughtsURL = `${process.env.API_URL}/thoughts`;
-const categoriesURL = `${process.env.API_URL}/categories`;
+const thoughtsURL = `${env.API_URL}/thoughts`;
+
+const categoriesURL = `${env.API_URL}/categories`;
 
 function App() {
-  const getThought = useSelector(state => state.getThought);
-  const selectedCategory = useSelector(state => state.selectedCategory);
-  const postedCategory = useSelector(state => state.postedCategory);
-  const postThought = useSelector(state => state.postThought);
+  const getThought = useSelector((state) => state.getThought);
+  const selectedCategory = useSelector((state) => state.selectedCategory);
+  const postedCategory = useSelector((state) => state.postedCategory);
+  const postThought = useSelector((state) => state.postThought);
 
   const dispatch = useDispatch();
 
@@ -54,14 +57,20 @@ function App() {
             </div>
             <button
               className="quote-button"
-              onClick={e => {
+              onClick={(e) => {
                 fetch(
                   selectedCategory === "Random"
                     ? `${thoughtsURL}/random`
-                    : `${categoriesURL}/random/${selectedCategory}`
+                    : `${categoriesURL}/random/${selectedCategory}`,
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                      Accept: "application/json",
+                    },
+                  }
                 )
-                  .then(res => res.json())
-                  .then(data => {
+                  .then((res) => res.json())
+                  .then((data) => {
                     dispatch(changeQuote(data.randomThought.thought));
 
                     document.querySelector(".App").style.backgroundColor =
