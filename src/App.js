@@ -10,8 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   changeQuote,
   selectCategory,
-  postCategory,
-  thoughtToPost,
+  // postCategory,
+  // thoughtToPost,
 } from "./actions";
 
 import { Category } from "./components/Category";
@@ -21,10 +21,10 @@ const thoughtsURL = `${env.API_URL}/thoughts`;
 const categoriesURL = `${env.API_URL}/categories`;
 
 function App() {
-  const getThought = useSelector((state) => state.getThought);
-  const selectedCategory = useSelector((state) => state.selectedCategory);
-  const postedCategory = useSelector((state) => state.postedCategory);
-  const postThought = useSelector((state) => state.postThought);
+  const getThought = useSelector(state => state.getThought);
+  const selectedCategory = useSelector(state => state.selectedCategory);
+  // const postedCategory = useSelector((state) => state.postedCategory);
+  // const postThought = useSelector((state) => state.postThought);
 
   const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ function App() {
             </div>
             <button
               className="quote-button"
-              onClick={(e) => {
+              onClick={e => {
                 fetch(
                   selectedCategory === "Random"
                     ? `${thoughtsURL}/random`
@@ -69,8 +69,8 @@ function App() {
                     },
                   }
                 )
-                  .then((res) => res.json())
-                  .then((data) => {
+                  .then(res => res.json())
+                  .then(data => {
                     dispatch(changeQuote(data.randomThought.thought));
 
                     document.querySelector(".App").style.backgroundColor =
