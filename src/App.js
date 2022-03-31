@@ -9,15 +9,15 @@ import { colors, categories } from "./lists";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeQuote,
-  postCategory,
+  // postCategory,
   selectCategory,
-  thoughtToPost,
+  // thoughtToPost,
 } from "./actions";
 
 import { Category } from "./components/Category";
 import { Header } from "./components/Header";
 import { ThoughtArea } from "./components/ThoughtArea";
-import { PostThought } from "./components/PostThought";
+// import { PostThought } from "./components/PostThought";
 
 const thoughtsURL = `${env.API_URL}/thoughts`;
 
@@ -26,8 +26,8 @@ const categoriesURL = `${env.API_URL}/categories`;
 function App() {
   const getThought = useSelector((state) => state.getThought);
   const selectedCategory = useSelector((state) => state.selectedCategory);
-  const postedCategory = useSelector((state) => state.postedCategory);
-  const postThought = useSelector((state) => state.postThought);
+  // const postedCategory = useSelector((state) => state.postedCategory);
+  // const postThought = useSelector((state) => state.postThought);
 
   const dispatch = useDispatch();
 
