@@ -49,5 +49,10 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
     "jest": "^27.5.1"
+  },
+  "react-dotenv": {
+    "whitelist": [
+      "API_URL"
+    ]
   }
 }
