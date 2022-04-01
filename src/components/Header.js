@@ -1,8 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
+import LoginModal from "./LoginModal";
 
 const HeaderDiv = styled.header`
   display: grid;
-  // grid-template-columns: 1fr 2fr 1fr;
+
   grid-template:
     "post-a-thought heading login" auto/
     1fr 2fr 1fr;
@@ -63,9 +65,6 @@ const HeaderDiv = styled.header`
       grid-area: post-a-thought;
     }
 
-    // padding: 1rem;
-    // gap: 2rem;
-
     .login {
       margin: 0 auto;
     }
@@ -74,6 +73,11 @@ const HeaderDiv = styled.header`
 
 export const Header = () => {
   const loggedIn = false;
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <HeaderDiv>
       {loggedIn ? (
@@ -82,7 +86,10 @@ export const Header = () => {
         <div></div>
       )}
       <h1>Positive Thought Generator</h1>
-      <div className="login">Log in</div>
+      <div className="login" onClick={handleOpen}>
+        Log in
+      </div>
+      <LoginModal open={open} handleClose={handleClose} />
     </HeaderDiv>
   );
 };
