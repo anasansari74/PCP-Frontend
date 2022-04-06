@@ -86,6 +86,10 @@ export const ThoughtArea = ({
           <button
             className="quote-button"
             onClick={(e) => {
+              // dispatch(changeQuote("Loading..."));
+              if (getThought === null) {
+                return "Loading...";
+              }
               fetch(
                 selectedCategory === "Random"
                   ? `${thoughtsURL}/random`

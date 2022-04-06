@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -20,8 +20,8 @@ const style = {
 };
 
 const LoginModal = ({ handleClose, open }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
 
   return (
     <Modal
@@ -45,7 +45,7 @@ const LoginModal = ({ handleClose, open }) => {
             id="outlined-basic"
             label="Username"
             variant="outlined"
-            onChange={e => setUsername(e.target.value)}
+            // onChange={e => setUsername(e.target.value)}
           />
           <TextField
             required
@@ -53,7 +53,7 @@ const LoginModal = ({ handleClose, open }) => {
             label="Password"
             type="password"
             autoComplete="current-password"
-            onChange={e => setPassword(e.target.value)}
+            // onChange={e => setPassword(e.target.value)}
           />
           <Button variant="contained" endIcon={<SendIcon />}>
             Send
