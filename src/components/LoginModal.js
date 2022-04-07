@@ -1,4 +1,6 @@
-// import { useState } from "react";
+import { useState } from "react";
+import env from "react-dotenv";
+
 
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -20,8 +22,23 @@ const style = {
 };
 
 const LoginModal = ({ handleClose, open }) => {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginUser = (username, password) => {
+    fetch(`${env.API_URL}/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <Modal
@@ -45,7 +62,7 @@ const LoginModal = ({ handleClose, open }) => {
             id="outlined-basic"
             label="Username"
             variant="outlined"
-            // onChange={e => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             required
@@ -53,9 +70,16 @@ const LoginModal = ({ handleClose, open }) => {
             label="Password"
             type="password"
             autoComplete="current-password"
-            // onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <Button variant="contained" endIcon={<SendIcon />}>
+          <Button
+            // type="submit"
+            onClick={() => {
+              loginUser(username, password);
+            }}
+            variant="contained"
+            endIcon={<SendIcon />}
+          >
             Send
           </Button>
         </Box>
