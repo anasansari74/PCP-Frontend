@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 import env from "react-dotenv";
 
@@ -24,6 +24,11 @@ const thoughtsURL = `${env.API_URL}/thoughts`;
 const categoriesURL = `${env.API_URL}/categories`;
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState("");
+
+
+
+
   const getThought = useSelector((state) => state.getThought);
   const selectedCategory = useSelector((state) => state.selectedCategory);
   // const postedCategory = useSelector((state) => state.postedCategory);
@@ -33,9 +38,10 @@ function App() {
 
   const randomColorString = colors[Math.floor(Math.random() * colors.length)];
 
+
   return (
     <div className="App">
-      <Header />
+      <Header loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
       <main className="page-body">
         <Category
           selectedCategory={selectedCategory}

@@ -71,7 +71,7 @@ const HeaderDiv = styled.header`
   }
 `;
 
-export const Header = () => {
+export const Header = ({ loggedInUser, setLoggedInUser }) => {
   const loggedIn = false;
 
   const [open, setOpen] = useState(false);
@@ -89,7 +89,7 @@ export const Header = () => {
       <div className="login" onClick={handleOpen}>
         Log in
       </div>
-      <LoginModal open={open} handleClose={handleClose} />
+      <LoginModal loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} open={open} handleClose={handleClose} />
     </HeaderDiv>
   );
 };

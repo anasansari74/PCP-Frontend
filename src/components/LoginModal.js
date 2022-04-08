@@ -1,7 +1,6 @@
 import { useState } from "react";
 import env from "react-dotenv";
 
-
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -21,23 +20,42 @@ const style = {
   textAlign: "center",
 };
 
-const LoginModal = ({ handleClose, open }) => {
+const LoginModal = ({ loggedInUser, setLoggedInUser, handleClose, open }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginUser = (username, password) => {
+  const handleLogin = (username, password) => {
+    const details = {
+      username: username,
+      password: password,
+    };
     fetch(`${env.API_URL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
+      credentials: "include",
+      body: JSON.stringify(details),
     })
-      .then((resp) => resp.json())
-      .then((data) => console.log(data));
+      .then((resp) => {
+        if (resp.status === 204) {
+          return [];
+        } else if (resp.status === "ok") {
+          console.log("hello") }
+        //   {
+        //   return resp.json().then((data) => console.log(data))
+        // }
+      })
+
+      .then((data) => {
+        console.log(data)
+        if (data.status === "error") {
+          alert(data.error);
+        } else if (data.status === "ok"){
+          console.log(details)
+          setLoggedInUser(details.username);
+        }
+      });
   };
 
   return (
@@ -75,7 +93,11 @@ const LoginModal = ({ handleClose, open }) => {
           <Button
             // type="submit"
             onClick={() => {
-              loginUser(username, password);
+              handleLogin(username, password);
+              console.log("this is logged in user", loggedInUser);
+              handleClose();
+              // setUsername("");
+              // setPassword("");
             }}
             variant="contained"
             endIcon={<SendIcon />}
