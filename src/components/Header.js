@@ -2,6 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
 
+// Please move to line 76 to skip the CSS
+
 const HeaderDiv = styled.header`
   display: grid;
 

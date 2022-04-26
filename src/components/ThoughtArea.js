@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+// Please move to line 66 to skip the CSS
+
 const ThoughtAreaSection = styled.div`
   display: grid;
   width: 100vw;
@@ -85,7 +87,7 @@ export const ThoughtArea = ({
           </div>
           <button
             className="quote-button"
-            onClick={(e) => {
+            onClick={e => {
               // dispatch(changeQuote("Loading..."));
               if (getThought === null) {
                 return "Loading...";
@@ -102,8 +104,8 @@ export const ThoughtArea = ({
                   },
                 }
               )
-                .then((res) => res.json())
-                .then((data) => {
+                .then(res => res.json())
+                .then(data => {
                   dispatch(changeQuote(data.randomThought.thought));
 
                   document.querySelector("body").style.backgroundColor =

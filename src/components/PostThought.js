@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const PostThoughtSection = styled.div`
-  
+// Please move to line 43 to skip the CSS
 
+const PostThoughtSection = styled.div`
   section.post-thought form {
     display: grid;
     place-items: center;
@@ -23,9 +23,9 @@ const PostThoughtSection = styled.div`
   }
 
   .user-input {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-gap: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1rem;
   }
 
   #thoughts {
@@ -53,7 +53,7 @@ export const PostThought = ({
     <PostThoughtSection>
       <section className="post-thought">
         <form
-          onSubmit={(e) => {
+          onSubmit={e => {
             e.preventDefault();
 
             postedCategory === "" || postThought === ""
@@ -68,8 +68,8 @@ export const PostThought = ({
                     thought: postThought,
                   }),
                 })
-                  .then((res) => res.json())
-                  .then((data) => {
+                  .then(res => res.json())
+                  .then(data => {
                     alert("Thought posted successfully!");
                   });
             dispatch(postCategory("Random"));
@@ -79,27 +79,27 @@ export const PostThought = ({
           <textarea
             placeholder="Write your personal positive thought here..."
             type={"reset"}
-            onChange={(e) => {
+            onChange={e => {
               dispatch(thoughtToPost(e.target.value));
             }}
           ></textarea>
           <div className="user-input">
-          <select
-            name="category to post"
-            id="thoughts"
-            value={postedCategory}
-            // onChange={e => setPostCategory(e.target.value)}
-            onChange={(e) => dispatch(postCategory(e.target.value))}
-          >
-            {categories.map((category, index) => (
-              <option key={index} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <button className="post-thought-button" type="submit">
-            Post Thought
-          </button>
+            <select
+              name="category to post"
+              id="thoughts"
+              value={postedCategory}
+              // onChange={e => setPostCategory(e.target.value)}
+              onChange={e => dispatch(postCategory(e.target.value))}
+            >
+              {categories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <button className="post-thought-button" type="submit">
+              Post Thought
+            </button>
           </div>
         </form>
       </section>

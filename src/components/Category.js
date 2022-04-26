@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+// Please move to line 53 to skip the CSS
+
 const CategoryDiv = styled.div`
   width: 100vw;
 

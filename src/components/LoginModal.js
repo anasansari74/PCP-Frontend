@@ -1,7 +1,6 @@
 import { useState } from "react";
 import env from "react-dotenv";
 
-
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -36,8 +35,8 @@ const LoginModal = ({ handleClose, open }) => {
         password: password,
       }),
     })
-      .then((resp) => resp.json())
-      .then((data) => console.log(data));
+      .then(resp => resp.json())
+      .then(data => console.log(data));
   };
 
   return (
@@ -62,7 +61,7 @@ const LoginModal = ({ handleClose, open }) => {
             id="outlined-basic"
             label="Username"
             variant="outlined"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
           />
           <TextField
             required
@@ -70,7 +69,7 @@ const LoginModal = ({ handleClose, open }) => {
             label="Password"
             type="password"
             autoComplete="current-password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
           />
           <Button
             // type="submit"
