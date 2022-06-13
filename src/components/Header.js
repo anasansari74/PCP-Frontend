@@ -1,6 +1,6 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styled from "styled-components";
-import LoginModal from "./LoginModal";
+// import LoginModal from "./LoginModal";
 
 // Please move to line 76 to skip the CSS
 
@@ -76,9 +76,9 @@ const HeaderDiv = styled.header`
 export const Header = () => {
   const loggedIn = false;
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   return (
     <HeaderDiv>
@@ -88,10 +88,10 @@ export const Header = () => {
         <div></div>
       )}
       <h1>Positive Thought Generator</h1>
-      <div className="login" onClick={handleOpen}>
+      {/* <div className="login" onClick={handleOpen}>
         Log in
       </div>
-      <LoginModal open={open} handleClose={handleClose} />
+      <LoginModal open={open} handleClose={handleClose} /> */}
     </HeaderDiv>
   );
 };
